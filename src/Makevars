@@ -1,0 +1,2 @@
+### We need the armadillo package
+PKG_LIBS = -llapack -lblas

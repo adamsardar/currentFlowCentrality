@@ -1,0 +1,41 @@
+---
+title: "Current Flow Example"
+author: "Adam Sardar"
+date: "27 October 2015"
+output: html_document
+---
+
+Preparing an example of a single sink/source current flow. Taken from the [tutorial at](http://www.sci.unich.it/~francesc/teaching/network/flowcentrality.html).
+
+
+```{r}
+
+library(igraph)
+library(magrittr)
+library(data.table)
+
+graphDT <- data.table(from = c("A","A","B","B","B","C","C","E","F","G"),
+           to = c("B","C","C","E","F","D","G","F","G","H"),
+           absoluteCurrent = c(0.47,0.53,0.07,0.13,0.27,0,0.6,0.13,0.4,1))
+
+singleSTcurrentFlow <- graph.data.frame(graphDT) %>% as.undirected
+
+V(singleSTcurrentFlow)$isSource <- FALSE
+V(singleSTcurrentFlow)$isSink <- FALSE
+
+V(singleSTcurrentFlow)[name == "A"]$isSource <- TRUE
+V(singleSTcurrentFlow)[name == "H"]$isSink <- TRUE
+
+refVals <- c(1,0.47,0.6,0,0.13,0.4,1,1)
+names(refVals) <- c("A","B","C","D","E","F","G","H")
+V(singleSTcurrentFlow)$absoluteFlow <- refVals[V(singleSTcurrentFlow)$name]
+
+
+potentialVals <- c(0.77,0.3,0.23,0.23,0.17,0.03,-0.37,-1.37)
+names(potentialVals) <- c("A","B","C","D","E","F","G","H")
+V(singleSTcurrentFlow)$potential <- potentialVals[V(singleSTcurrentFlow)$name]
+
+
+save(singleSTcurrentFlow,file="./data/singleSTcurrentFlow.RData")
+
+```

@@ -1,0 +1,32 @@
+Package: currentFlowCentrality
+Type: Package
+Title: Network centrality based on the concept of (electrical) current flow
+Version: 1.2.1
+Date: 2020-5-16
+Author: Adam Sardar
+Maintainer: Adam Sardar <adam@sardar.me.uk>
+Description: Many centralities are based on the principle of calculating the
+    shortest path from A to B in a network. Newman et al. (2005) made the suggestion
+    of thinking about the closeness of a node to the network based on resistive
+    distance. This package is a simple implementation of his published algorithm.
+License: MPL-2.0 | file LICENSE
+LazyData: true
+Depends:
+    R (>= 3.2)
+Imports:
+    Rcpp (>= 0.12),
+    data.table (>= 1.9.10),
+    igraph (>= 1.0.1),
+    magrittr (>= 1.5),
+    RSpectra (>= 0.13),
+    ensurer (>= 1.0),
+    Matrix (>= 1.2),
+    methods (>= 3.2)
+LinkingTo: 
+    Rcpp (>= 0.12),
+    RcppArmadillo (>= 0.9.1)
+Suggests:
+    testthat (>= 0.1),
+    MASS (>= 7.3),
+    igraphdata (>= 1.0.1)
+RoxygenNote: 6.1.1

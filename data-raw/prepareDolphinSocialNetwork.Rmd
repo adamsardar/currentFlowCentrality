@@ -1,0 +1,21 @@
+---
+title: "Prepare Dolphin Social Network"
+author: "Adam Sardar"
+date: "12 February 2016"
+output: html_document
+---
+
+Newman and Lusseau have a paper describing the social network of a pod of dolphins in New Zealands. Why not? Anyway, it's an easy test for the current flow betweeness (Bozzo & Franceschet 2012 use it), so I'll make it available in this package.
+
+```{r}
+
+library(igraph)
+
+dolphinPodLusseau <- read_graph("./data-raw/dolphins.gml",format="gml")
+
+V(dolphinPodLusseau)$name <- V(dolphinPodLusseau)$label
+dolphinPodLusseau %<>% delete_vertex_attr("label")
+
+save(dolphinPodLusseau,file="data/dolphinPodLusseau.RData",compress = "xz")
+
+```
