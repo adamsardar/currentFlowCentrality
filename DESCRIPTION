@@ -27,6 +27,5 @@ LinkingTo:
 Suggests:
     testthat (>= 0.1),
     MASS (>= 7.3),
-    igraphdata (>= 1.0.1),
-    covr
+    igraphdata (>= 1.0.1)
 RoxygenNote: 6.1.1
